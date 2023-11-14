@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO APP</title>
+
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=Open+Sans:wght@400;600&family=Roboto&display=swap');
+        body{
+            font-family: 'Open Sans', sans-serif;
+            
+            background: linear-gradient(337deg, rgba(255,255,255,1) 0%, rgba(244,255,0,0.4674602262780112) 4%, rgba(0,212,255,1) 66%); 
+            background-repeat: no-repeat ;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container{
+            display: flex;
+            flex-direction: column;
+            align-items : center;
+            height: max-content;
+            width: max-content;
+            background-color: white;
+            border-radius: 10px;
+            margin-top: 100px;
+            padding-bottom: 5%;
+            padding-top: 3%;
+            width: 658px;
+        }
+
+        .container > * {
+            width: 30rem;
+        }
+
+        .button{
+            margin-top: 20px;
+            background: linear-gradient(337deg, rgba(255,255,255,1) 0%, rgba(244,255,0,0.4674602262780112) 4%, rgba(0,212,255,1) 66%);
+            border: none;
+            border-radius: 5px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            color: white;
+            font-weight: bolder;
+            cursor: pointer;
+            height: 34px;
+            width: 75%;
+        }
+
+        .button:hover {
+            border: 1px blue solid;
+            transition: all 0.5s ease-in-out;
+        }
+
+        h1{
+            text-align: center;
+            background: linear-gradient(337deg, rgba(255,255,255,1) 0%, rgba(244,255,0,0.4674602262780112) 4%, rgba(0,212,255,1) 66%);
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            -webkit-text-fill-color: transparent; 
+            -moz-text-fill-color: transparent;
+        }
+
+        li{
+            margin-top: 20px;
+            width: 658px;
+            background-color: white; 
+            list-style: none;   
+            display: flex;
+            justify-content: space-between;
+            border-radius: 7px;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        li > * {
+            margin: 8px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class = "container">
+        <h1 >TODO APP</h1>
+    
+        <input type="text" id="inputTask" placeholder="Enter your task">
+        <button onclick="addToDo()" class="button">Add Task</button>
+    </div>
+    <ul id="taskList">    
+    </ul>
+    <script>
+        function addToDo(){
+            let inputValue = document.getElementById("inputTask").value;
+
+            if (!inputValue) return;
+
+            let li = document.createElement('li');
+            let reButton = document.createElement('button')
+            reButton.textContent="Remove";
+            reButton.onclick = removeList;
+            let liText = document.createElement("span");
+            liText.textContent = inputValue;
+            document.getElementById('taskList').appendChild(li);
+            li.appendChild(liText);
+            li.appendChild(reButton);
+            
+            // Clear the input value
+            document.getElementById("inputTask").value = "";
+        }
+
+        function removeList(e){
+            e.target.parentNode.remove()
+        }
+    </script>
+</body>
+</html>
+
+
+
