@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TODO APP</title>
+    <link rel="icon" href="favicon-32x32.png" type="image/x-icon">
 
+    <title>TODO APP</title>
+    
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=Open+Sans:wght@400;600&family=Roboto&display=swap');
         body{
             font-family: 'Open Sans', sans-serif;
-            
             background: linear-gradient(337deg, rgba(255,255,255,1) 0%, rgba(244,255,0,0.4674602262780112) 4%, rgba(0,212,255,1) 66%); 
             background-repeat: no-repeat ;
-            height: 100vh;
+            min-height: 100vh;
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -30,6 +32,9 @@
             padding-bottom: 5%;
             padding-top: 3%;
             width: 658px;
+            box-shadow: 0px 0px 129px 0px rgba(0,0,0,0.75);
+            -webkit-box-shadow: 0px 0px 129px 0px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 0px 129px 0px rgba(0,0,0,0.75);;
         }
 
         .container > * {
@@ -83,39 +88,96 @@
             margin: 8px;
         }
 
+        li > span {
+            text-wrap: wrap;
+            word-wrap: break-word;
+            max-width: 80%;
+        }
+
+        .rmButton {
+            max-height: 20px;
+        }
+
+        .btnBox{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input[type=checkbox] {
+            width: 20px;
+            height: 20px;
+            /* transform: scale(1.5); */
+        }
+
+        input[type=text]{
+            border-radius: 5px;
+            border: 1px solid #555555;
+            padding:10px;
+            outline: none;
+            width: 72%;
+
+        }
+
+        .strike{
+            text-decoration:line-through;
+            text-decoration-thickness: 1.5px;
+        }
+
+
     </style>
 </head>
 <body>
     <div class = "container">
         <h1 >TODO APP</h1>
-    
-        <input type="text" id="inputTask" placeholder="Enter your task">
+        
+        <input type="text" id="inputTask" placeholder="Enter your task" onkeypress="handleKeyPress(event)">
         <button onclick="addToDo()" class="button">Add Task</button>
     </div>
     <ul id="taskList">    
     </ul>
     <script>
+        function handleKeyPress(event){
+            if(event.key == `Enter`) addToDo(); 
+        }
+
         function addToDo(){
             let inputValue = document.getElementById("inputTask").value;
 
             if (!inputValue) return;
-
+            let box = document.createElement("div");
+            box.classList.add('btnBox')
             let li = document.createElement('li');
-            let reButton = document.createElement('button')
-            reButton.textContent="Remove";
+            let dnButton = document.createElement('input') 
+            dnButton.type="checkbox"
+            dnButton.innerText="Done"
+            dnButton.onchange= check;
+            let reButton = document.createElement('img')
+            reButton.style="cursor:pointer"
+            reButton.src="close.png"
+            reButton.classList.add("rmButton");
+            box.appendChild(dnButton);
+            box.appendChild(reButton);
             reButton.onclick = removeList;
+            
+
             let liText = document.createElement("span");
             liText.textContent = inputValue;
             document.getElementById('taskList').appendChild(li);
             li.appendChild(liText);
-            li.appendChild(reButton);
-            
-            // Clear the input value
+            li.appendChild(box);
             document.getElementById("inputTask").value = "";
         }
 
         function removeList(e){
-            e.target.parentNode.remove()
+            e.target.parentNode.parentNode.remove()
+        }
+
+        function check(e){
+            let text = e.target.parentNode.parentNode.children[0]
+            
+            if(text.classList.contains("strike")) text.classList.remove("strike");
+            else text.classList.add("strike");
         }
     </script>
 </body>
