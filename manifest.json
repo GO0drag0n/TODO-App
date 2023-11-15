@@ -3,18 +3,18 @@
     "name": "TO-DO App",
     "icons": [
       {
-        "src": "/assets/logo-512x512.png",
+        "src": "./assets/logo-512x512.png",
         "type": "image/png",
         "sizes": "512x512"
       },
       {
-        "src": "/assets/logo-192x192.png",
+        "src": "./assets/logo-192x192.png",
         "type": "image/png",
         "sizes": "192x192"
       }
     ],
     "id": "/",
-    "start_url": "/",
+    "start_url": "/TODO-App",
     "background_color": "#00FEFE",
     "display": "standalone",
     "scope": "/",
