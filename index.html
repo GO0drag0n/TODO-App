@@ -124,6 +124,30 @@
             text-decoration-thickness: 1.5px;
         }
 
+        @media only screen and (max-width: 600px) {
+        body {
+        /* Adjust styles for smaller screens */
+        }
+
+        .container {
+            max-width: 580px;
+            width: 100%;
+            /* Adjust styles for smaller screens */
+        }
+
+        li{
+            /* max-width: 580px; */
+            width: 95vw;
+        }
+
+        li > span {
+            text-wrap: wrap;
+            word-wrap: break-word;
+            max-width: 70%;
+        }
+    /* Add more media query styles as needed */
+}
+
 
     </style>
 </head>
