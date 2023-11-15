@@ -1,0 +1,27 @@
+{
+    "short_name": "TO-DO",
+    "name": "TO-DO App",
+    "icons": [
+      {
+        "src": "/assets/logo-512x512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      },
+      {
+        "src": "/assets/logo-192x192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      }
+    ],
+    "id": "/",
+    "start_url": "/",
+    "background_color": "#00FEFE",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#00FEFE",
+    "shortcuts": [],
+    "description": "Manage your TO-DOs",
+    "screenshots": [
+    ]
+  }
+  
