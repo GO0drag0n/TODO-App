@@ -166,12 +166,28 @@
     <ul id="taskList">    
     </ul>
     <script>
+        function saveTodos() {
+            let todos = 
+                Array.from(document.getElementById("taskList").children)
+                .map(li => li.children[0])
+                .map(x => ({ value: x.textContent, checked: x.classList.contains("strike") }))
+                .map(JSON.stringify);
+
+            localStorage.setItem("todos", todos);
+        }
+
+        function loadTodos() {
+            eval(`[${localStorage.getItem("todos")}]`).forEach(x => addToDo(x.value, x.checked))
+        }
+
+        loadTodos()
+
         function handleKeyPress(event){
             if(event.key == `Enter`) addToDo(); 
         }
 
-        function addToDo(){
-            let inputValue = document.getElementById("inputTask").value;
+        function addToDo(value = null, strike = false){
+            let inputValue = value || document.getElementById("inputTask").value;
 
             if (!inputValue) return;
             let box = document.createElement("div");
@@ -180,6 +196,7 @@
             let dnButton = document.createElement('input') 
             dnButton.type="checkbox"
             dnButton.innerText="Done"
+            if(strike) dnButton.checked=true
             dnButton.onchange= check;
             let reButton = document.createElement('img')
             reButton.style="cursor:pointer"
@@ -192,14 +209,18 @@
 
             let liText = document.createElement("span");
             liText.textContent = inputValue;
+            if(strike) liText.classList.add("strike");
             document.getElementById('taskList').appendChild(li);
             li.appendChild(liText);
             li.appendChild(box);
             document.getElementById("inputTask").value = "";
+
+            if(!value) saveTodos()
         }
 
         function removeList(e){
             e.target.parentNode.parentNode.remove()
+            saveTodos()
         }
 
         function check(e){
@@ -207,6 +228,8 @@
             
             if(text.classList.contains("strike")) text.classList.remove("strike");
             else text.classList.add("strike");
+
+            saveTodos()
         }
     </script>
 </body>
