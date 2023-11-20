@@ -6,5 +6,6 @@
 - Supports PWA
 - Can mark as done & remove
 - TODOs saved in local storage
+- Multiple TODOs at one place
 
 You can check it out here [https://go0drag0n.github.io/TODO-App/](https://go0drag0n.github.io/TODO-App/)
